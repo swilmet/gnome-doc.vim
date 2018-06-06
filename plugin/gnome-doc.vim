@@ -52,7 +52,7 @@ func! GnomeDoc()
 		let txtCommentHead = "/**"
 		let txtComment1 = ""
 		let txtCommentn = ""
-		let txtCommentTail = "*/"
+		let txtCommentTail = " Since:/"
 	elseif b:current_syntax == "cpp"
 		" ... C++ doesn't
 		let txtCommentHead = "/**"
@@ -107,7 +107,7 @@ func! GnomeDoc()
 		let _p = substitute (parameters, '\([^,]*\) *, *\(.*\)', '\1', "")
 		let parameters = substitute (parameters, '\([^,]*\) *, *\(.*\)', '\2', "")
 		let paramname = substitute (_p, '.*[^A-Za-z_]\([A-Za-z_][A-Za-z0-9_]*\)\(\[[0-9]\]\)*$', '\1', "")
-		exe txtBOL . txtCommentn . "@" . paramname . ": " . txtEOL
+		exe txtBOL . txtCommentn . "@" . paramname . ":" . txtEOL
 	endwhile
 
 	exe txtBOL . txtCommentn . txtEOL
@@ -117,7 +117,7 @@ func! GnomeDoc()
 
 	if returntype !~# '\(^\|[^A-Za-z0-9_]\)void\([^A-Za-z0-9_]\|$\)'
 		exe txtBOL . txtCommentn . txtEOL
-		exe txtBOL . txtCommentn . "Return value: " . txtEOL
+		exe txtBOL . txtCommentn . "Returns:" . txtEOL
 	endif
 
 	" Close the comment block.
